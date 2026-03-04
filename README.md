@@ -1,6 +1,6 @@
 # RMPC Configuration
 
-This repository contains my **RMPC (Rust Music Player Client) configuration** for Arch Linux, along with the corresponding MPD setup. RMPC is a terminal-based music player client with tabs, keybindings, and visualizations.
+This is my **RMPC (Rust Music Player Client) configuration** along with the corresponding MPD setup. RMPC is a terminal-based music player client with tabs, keybindings, and visualizations.
 
 ---
 
