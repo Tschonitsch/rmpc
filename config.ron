@@ -16,6 +16,7 @@
     enable_mouse: true,
     status_update_interval_ms: 1000,
     select_current_song_on_change: false,
+
     album_art: (
         method: Auto,
         max_size_px: (width: 1000, height: 1000),
@@ -37,7 +38,7 @@
             "2":       SwitchToTab("Albums"),
             "q":       Quit,
             ">":       NextTrack,
-            "p":       TogglePause,
+            "<Space>": TogglePause,
             "<":       PreviousTrack,
             "f":       SeekForward,
             "z":       ToggleRepeat,
@@ -70,7 +71,7 @@
             "r":         Rename,
             "n":         NextResult,
             "g":         Top,
-            "<Space>":   Select,
+            "<Enter>":   Select,
             "<C-Space>": InvertSelection,
             "G":         Bottom,
             "<CR>":      Confirm,
@@ -134,7 +135,49 @@
             name: "Playing",
             pane: Split(
                 direction: Horizontal,
-                panes: [(size: "50%", pane: Pane(AlbumArt)), (size: "50%", pane: Pane(Queue))],
+                panes: [
+                    (
+                        size: "30%",
+                        pane: Split(
+                            direction: Vertical,
+                            panes: [
+                                (
+                                    size: "65%",
+                                    borders: "ALL",
+                                    border_symbols: Rounded,
+                                    pane: Pane(AlbumArt)
+                                ),
+                                (
+                                    size: "35%",
+                                    borders: "ALL",
+                                    border_symbols: Rounded,
+                                    border_title_alignment: Center,
+                                    pane: Pane(Lyrics)
+                                )
+                            ],
+                        )
+                    ),
+                    (
+                        size: "70%",
+                        pane: Split(
+                            direction: Vertical,
+                            panes: [
+                                (
+                                    size: "3",
+                                    borders: "ALL",
+                                    border_symbols: Rounded,
+                                    pane: Pane(QueueHeader())
+                                ),
+                                (
+                                    size: "100%",
+                                    borders: "ALL",
+                                    border_symbols: Rounded,
+                                    pane: Pane(Queue)
+                                )
+                            ],
+                        )
+                    )
+                ],
             ),
         ),
         (
