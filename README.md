@@ -2,6 +2,10 @@
 
 This is my **RMPC (Rust Music Player Client) configuration** along with the corresponding MPD setup. RMPC is a terminal-based music player client with tabs, keybindings, and visualizations.
 
+<br>
+
+![Alt-Text](https://github.com/Tschonitsch/rmpc/blob/main/example.png)
+
 ---
 
 ## 🔹 Features
@@ -103,7 +107,7 @@ audio_output {
 
 <br>
 
-![Alt-Text](https://github.com/Tschonitsch/rmpc/blob/main/example.png)
+
 
 ## 🔗 Resources
 
