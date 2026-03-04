@@ -103,7 +103,7 @@ audio_output {
 
 <br>
 
-![Alt-Text](https://github.com/Tschonitsch/rmpc/blob/main/screenshot.png)
+![Alt-Text](https://github.com/Tschonitsch/rmpc/blob/main/example.png)
 
 ## 🔗 Resources
 
