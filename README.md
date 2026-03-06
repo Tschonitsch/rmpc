@@ -4,7 +4,7 @@ This is my **RMPC (Rust Music Player Client) configuration** along with the corr
 
 <br>
 
-![Alt-Text](https://github.com/Tschonitsch/rmpc/blob/main/example.png)
+![Alt-Text](https://github.com/Tschonitsch/rmpc/blob/main/screenshot.png)
 
 ---
 
