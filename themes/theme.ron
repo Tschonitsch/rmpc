@@ -1,37 +1,54 @@
-#![enable(implicit_some)]
+ #![enable(implicit_some)]
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
     progress_bar: (
-        symbols: ["", "█", "", "", ""],
+        symbols: ["", "█", "", " ", " "],
+        use_track_when_empty: false,
     ),
 
     scrollbar: (
-        symbols: ["|", "│", "▵", "▿"],
+        symbols: [" ", " ", " ", " "],
+        track_style: (),
+        ends_style: (),
+        thumb_style: (),
     ),
-
-    lyrics: (
-    timestamp: false
+    lyrics: (timestamp: false),
+    
+    symbols: (
+        song: " ",
+        dir: " ",
+        playlist: "󰲸 ",
+        marker: " ",
+        ellipsis: "...",
+        song_style: None,
+        dir_style: None,
+        playlist_style: None,
     ),
-
-    symbols: (song: "󰝚 ", dir: "󱍙 ", playlist: "󰲸 ", marker: "* ", ellipsis: "",
-    ),
-
     cava: (
         bar_symbols: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+        inverted_bar_symbols: ['▔', '🮂', '🮃', '▀', '🮄', '🮅', '🮆', '█'],
         bar_width: 1, bar_spacing: 1,
+        orientation: Horizontal,
     ),
-
+    browser_song_format: [
+        (kind: Group([
+                    (kind: Property(Track)),
+                    (kind: Text(" ")),
+                ])),
+        (kind: Group([
+                    (kind: Property(Artist)),
+                    (kind: Text(" - ")),
+                    (kind: Property(Title)),
+                ]), default: (kind: Property(Filename)))
+    ],
     song_table_format: [
         (
             prop: (kind: Sticker("playCount"),
-                 default: (kind: Text(""), style: ())),
+                 default: (kind: Text("-"))),
             width: "3",
-            alignment: Left,
-            label: "Playcount",
-            label_prop: (kind: Group([
-                (kind: Text("󰆙")),
-            ]))
+            alignment: Center,
+            label: "󰆙",
         ),
         (
             prop:(kind: Text("│")),
@@ -77,4 +94,94 @@
             ]))
         ),
     ],
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "3",
+                borders: "ALL",
+                border_symbols: Rounded,
+                pane: Pane(Tabs),
+            ),
+            (
+                size: "4",
+                borders: "ALL",
+                border_symbols: Rounded,
+                pane: Pane(Header),
+            ),
+            (
+                size: "100%",
+                borders: "NONE",
+                pane: Pane(TabContent),
+            ),
+            (
+                size: "3",
+                borders: "ALL",
+                border_symbols: Rounded,
+                border_title_position: Bottom,
+                border_title_alignment: Center,
+                border_title: [
+                    (kind: Property(Status(Elapsed))),
+                    (kind: Property(Status(StateV2(playing_label: "─󱦟─", paused_label: "──", stopped_label: "  ")))),
+                    (kind: Property(Status(Duration))),
+                ],
+                pane: Pane(ProgressBar),
+            ),
+        ],
+    ),
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("")),
+                    (kind: Property(Status(StateV2(playing_label: "  ", paused_label: "  ", stopped_label: "  ",)))),
+                    (kind: Text(" ")),
+                    (kind: Property(Widget(ScanStatus)))
+
+                ],
+                center: [
+                    (kind: Property(Song(Title)),
+                        default: (kind: Property(Song(Filename)))
+                    )
+                ],
+                right: [
+                    (kind: Text("VOLUME | ")),
+                    (kind: Property(Status(Volume))),
+                    (kind: Text("%")),
+                ]
+            ),
+            (
+                left: [
+                    (kind: Text("[ ")),
+                    (kind: Property(Status(Elapsed))),
+                    (kind: Text(" / ")),
+                    (kind: Property(Status(Duration))),
+                    (kind: Text(" | ")),
+                    (kind: Property(Status(Bitrate))),
+                    (kind: Text(" kbps")),
+                    (kind: Text("]")),
+                ],
+                center: [
+                    (kind: Property(Song(Artist)),
+                        default: (kind: Text("Unknown Artist"))
+                    ),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Album)),
+                        default: (kind: Text("Unknown Album"))
+                    )
+                ],
+                right: [
+                    (kind: Text("[ ")),
+                    (kind: Property(Status(RepeatV2(on_label: "", off_label: "")))),
+                    (kind: Text(" | ")),
+                    (kind: Property(Status(RandomV2(on_label: "", off_label: "")))),
+                    (kind: Text(" | ")),
+                    (kind: Property(Status(ConsumeV2(on_label: "󰮯", off_label: "󰮯", oneshot_label: "󰮯󰇊")))),
+                    (kind: Text(" | ")),
+                    (kind: Property(Status(SingleV2(on_label: "󰎤", off_label: "󰎦", oneshot_label: "󰇊", off_oneshot_label: "󱅊")))),
+                    (kind: Text(" ]")),
+                ]
+            ),
+        ],
+    ),
 )
