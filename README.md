@@ -6,6 +6,7 @@ This is my **RMPC (Rust Music Player Client) configuration** along with the corr
 
 ![Alt-Text](https://github.com/Tschonitsch/rmpc/blob/main/screenshot.png)
 
+![Alt-Text](https://github.com/Tschonitsch/rmpc/blob/main/vertical.png)
 ---
 
 ## 🔹 Features
