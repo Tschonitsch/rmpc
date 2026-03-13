@@ -1,4 +1,4 @@
- #![enable(implicit_some)]
+#![enable(implicit_some)]
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
@@ -44,88 +44,99 @@
     ],
     song_table_format: [
         (
-            prop: (kind: Sticker("playCount"),
-                 default: (kind: Text("-"))),
-            width: "3",
-            alignment: Center,
-            label: "󰆙",
-        ),
-        (
-            prop:(kind: Text("│")),
             width: "1",
             alignment: Center,
-            label: "",
-            label_prop: (kind: Group([
-                (kind: Text("│")),
-            ]))
+            label: "󰔓",
+            prop: (
+                default: (kind: Text(".")),
+                kind: Transform(Replace(content: (kind: Sticker("like")), replacements: [
+                    (match:  "0", replace: (kind: Group([(kind: Text("󰔑"))]))),
+                    (match:  "1", replace: (kind: Group([(kind: Text("󱢶"))]))),
+                    (match:  "2", replace: (kind: Group([(kind: Text("󰔓"))]))),
+                ])),
+            ),
         ),
         (
-            prop: (kind: Property(Artist),
-                default: (kind: Text("Unknown Artist"))),
-            width: "23%",
-            label_prop: (kind: Group([
-                (kind: Text("Artist ")),
-            ]))
+            width: "1",
+            alignment: Center,
+            label: "",
+            prop: (
+                default: (kind: Text(".")),
+                kind: Transform(Replace(content: (kind: Sticker("rating")), replacements: [
+                    (match:  "0", replace: (kind: Group([(kind: Text("󰎡"))]))),
+                    (match:  "1", replace: (kind: Group([(kind: Text("󰎤"))]))),
+                    (match:  "2", replace: (kind: Group([(kind: Text("󰎧"))]))),
+                    (match:  "3", replace: (kind: Group([(kind: Text("󰎪"))]))),
+                    (match:  "4", replace: (kind: Group([(kind: Text("󰎭"))]))),
+                    (match:  "5", replace: (kind: Group([(kind: Text("󰎱"))]))),
+                    (match:  "6", replace: (kind: Group([(kind: Text("󰎳"))]))),
+                    (match:  "7", replace: (kind: Group([(kind: Text("󰎶"))]))),
+                    (match:  "8", replace: (kind: Group([(kind: Text("󰎹"))]))),
+                    (match:  "9", replace: (kind: Group([(kind: Text("󰎼"))]))),
+                    (match: "10", replace: (kind: Group([(kind: Text("󰽽"))]))),
+                ])),
+            ),
         ),
         (
-            prop: (kind: Property(Title),
+            width: "2",
+            alignment: Center,
+            label: "󰆙",
+            prop: (
+                kind: Sticker("playCount"),
+                default:(kind: Text(".")),
+            ),
+        ),
+        (
+            width: "1",
+            alignment: Center,
+            label: "│",
+            prop:(
+                kind: Text("│")
+            ),
+        ),
+        (
+            width: "20%",
+            label: "Artist ",
+            prop: (
+                kind: Property(Artist),
+                default: (kind: Text("Unknown Artist"))
+            ),
+        ),
+        (
+            width: "40%",
+            label: "Title ",
+            prop: (
+                kind: Property(Title),
                 default: (kind: Property(Filename),
-                    default: (kind: Text("Unknown Title")))),
-            width: "36%",
-            label_prop: (kind: Group([
-                (kind: Text("Title ")),
-            ]))
+                default: (kind: Text("Unknown Title"))),
+            ),
         ),
         (
-            prop: (kind: Property(Album),
-                default: (kind: Text("Unknown Album"))),
-            width: "33%",
-            label_prop: (kind: Group([
-                (kind: Text("Album 󰀥")),
-            ]))
+            width: "30%",
+            label: "Album 󰀥",
+            prop: (
+                kind: Property(Album),
+                default: (kind: Text("Unknown Album"))
+            ),
         ),
         (
-            prop: (kind: Property(Duration),
-                default: (kind: Text("-"))),
-            width: "8%",
+
+            width: "6%",
             alignment: Right,
-            label_prop: (kind: Group([
-                (kind: Text("Length ")),
-            ]))
+            label: "Length ",
+            prop: (
+                kind: Property(Duration),
+                default: (kind: Text("-"))
+            ),
         ),
     ],
     layout: Split(
         direction: Vertical,
         panes: [
             (
-                size: "3",
-                borders: "ALL",
-                border_symbols: Rounded,
-                pane: Pane(Tabs),
-            ),
-            (
-                size: "4",
-                borders: "ALL",
-                border_symbols: Rounded,
-                pane: Pane(Header),
-            ),
-            (
                 size: "100%",
                 borders: "NONE",
                 pane: Pane(TabContent),
-            ),
-            (
-                size: "3",
-                borders: "ALL",
-                border_symbols: Rounded,
-                border_title_position: Bottom,
-                border_title_alignment: Center,
-                border_title: [
-                    (kind: Property(Status(Elapsed))),
-                    (kind: Property(Status(StateV2(playing_label: "─󱦟─", paused_label: "──", stopped_label: "  ")))),
-                    (kind: Property(Status(Duration))),
-                ],
-                pane: Pane(ProgressBar),
             ),
         ],
     ),
@@ -133,11 +144,14 @@
         rows: [
             (
                 left: [
-                    (kind: Text("")),
-                    (kind: Property(Status(StateV2(playing_label: "  ", paused_label: "  ", stopped_label: "  ",)))),
-                    (kind: Text(" ")),
-                    (kind: Property(Widget(ScanStatus)))
-
+                    (kind: Text(" ")),
+                    (kind: Property(Status(StateV2(playing_label: "", paused_label: "", stopped_label: "")))),
+                    (kind: Text("  ")),
+                    (kind: Property(Song(FileExtension))),
+                    (kind: Text(" ")),
+                    (kind: Property(Widget(ScanStatus))),
+                    (kind: Text(" ")),
+                    (kind: Property(Status(InputBuffer()))),
                 ],
                 center: [
                     (kind: Property(Song(Title)),
@@ -145,10 +159,13 @@
                     )
                 ],
                 right: [
-                    (kind: Text("VOLUME | ")),
+                    (kind: Text(" ")),
+                    (kind: Property(Song(Channels())), style: (fg: "#4c566a")),
+                    (kind: Text(" 󱡫 ")),
+                    (kind: Text(" 󱡬")),
                     (kind: Property(Status(Volume))),
-                    (kind: Text("%")),
-                ]
+                    (kind: Text("% ")),
+                ],
             ),
             (
                 left: [
@@ -156,10 +173,8 @@
                     (kind: Property(Status(Elapsed))),
                     (kind: Text(" / ")),
                     (kind: Property(Status(Duration))),
-                    (kind: Text(" | ")),
-                    (kind: Property(Status(Bitrate))),
-                    (kind: Text(" kbps")),
-                    (kind: Text("]")),
+                    (kind: Text(" 󱦟")),
+                    (kind: Text(" ]")),
                 ],
                 center: [
                     (kind: Property(Song(Artist)),
@@ -179,7 +194,11 @@
                     (kind: Property(Status(ConsumeV2(on_label: "󰮯", off_label: "󰮯", oneshot_label: "󰮯󰇊")))),
                     (kind: Text(" | ")),
                     (kind: Property(Status(SingleV2(on_label: "󰎤", off_label: "󰎦", oneshot_label: "󰇊", off_oneshot_label: "󱅊")))),
+                    (kind: Text(" | ")),
+                    (kind: Property(Status(Crossfade)),
+                        default: (kind: Text("󰴽"))),
                     (kind: Text(" ]")),
+                    
                 ]
             ),
         ],
