@@ -37,9 +37,7 @@
             "<S-Tab>": PreviousTab,
             "1":       SwitchToTab(" Home"),
             "2":       SwitchToTab("󰀥 Albums"),
-            "3":       SwitchToTab("󰟚 Cava"),
-            "4":       SwitchToTab("󰦨 Lyrics"),
-            "5":       SwitchToTab(" Search"),
+            "3":       SwitchToTab(" Search"),
 
             "q":       Quit,
             ">":       NextTrack,
@@ -57,7 +55,7 @@
             "P":       ShowDecoders,
         },
         navigation: {
-            "r":       Rate(kind: Modal(values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], custom: true, like: true), current: false),
+            "r":         Rate(kind: Modal(values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], custom: true, like: true), current: false),
             "k":         Up,
             "j":         Down,
             "h":         Left,
@@ -252,40 +250,6 @@
                     ),
                 ]
             )
-        ),
-        (
-            name: "󰟚 Cava",
-            pane: Split(
-                direction: Vertical,
-                panes: [
-                    (
-                        size: "100%",
-                        borders: "NONE",
-                        border_symbols: Rounded,
-                        pane: Pane(Cava),
-                    ),
-                ],
-            ),
-        ),
-        (
-            name: "󰦨 Lyrics",
-            pane: Split(
-                direction: Vertical,
-                panes: [
-                    (
-                        size: "3",
-                        borders: "ALL",
-                        border_symbols: Rounded,
-                        pane: Pane(Tabs),
-                    ),
-                    (
-                        size: "100%",
-                        borders: "ALL",
-                        border_symbols: Rounded,
-                        pane: Pane(Lyrics),
-                    ),
-                ],
-            ),
         ),
         (
             name: " Search",
