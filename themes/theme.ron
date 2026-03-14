@@ -195,6 +195,7 @@
                     (kind: Text(" / ")),
                     (kind: Property(Status(QueueTimeTotal(separator: " ")))),
                     (kind: Text(" 󱎫")),
+                    (kind: Text(" ]")),
                 ],
             ),
             (
@@ -223,7 +224,7 @@
                     (kind: Property(Song(Disc)), default: (kind: Text("0"))),
                     (kind: Text(" 󰥠 | ")),
                     (kind: Property(Song(Other("genre"))), default: (kind: Text("Unknown Genre"))),
-                    
+                    (kind: Text(" ]")),
                 ]
             ),
         ],
