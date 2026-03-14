@@ -166,18 +166,18 @@
                             direction: Horizontal,
                             panes: [
                                 (
-                                    size: "30%",
+                                    size: "29%",
                                     pane: Split(
                                         direction: Vertical,
                                         panes: [
                                             (
-                                                size: "68%",
+                                                size: "65%",
                                                 borders: "ALL",
                                                 border_symbols: Rounded,
                                                 pane: Pane(AlbumArt)
                                             ),
                                             (
-                                                size: "32%",
+                                                size: "35%",
                                                 borders: "ALL",
                                                 border_symbols: Rounded,
                                                 border_title_alignment: Center,
@@ -187,7 +187,7 @@
                                     )
                                 ),
                                 (
-                                    size: "70%",
+                                    size: "71%",
                                     pane: Split(
                                         direction: Vertical,
                                         panes: [
@@ -243,12 +243,18 @@
                         pane: Pane(Tabs),
                     ),
                     (
+                        size: "5",
+                        borders: "ALL",
+                        border_symbols: Rounded,
+                        pane: Pane(Header)
+                    ),
+                    (
                         size: "100%",
                         borders: "ALL",
                         border_symbols: Rounded,
                         pane: Pane(Albums),
                     ),
-                ]
+                ],
             )
         ),
         (
@@ -261,6 +267,12 @@
                         borders: "ALL",
                         border_symbols: Rounded,
                         pane: Pane(Tabs),
+                    ),
+                    (
+                        size: "5",
+                        borders: "ALL",
+                        border_symbols: Rounded,
+                        pane: Pane(Header)
                     ),
                     (
                         size: "100%",

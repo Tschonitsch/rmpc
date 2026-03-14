@@ -43,6 +43,9 @@
                 ]), default: (kind: Property(Filename)))
     ],
     song_table_format: [
+
+
+/*
         (
             width: "1",
             alignment: Center,
@@ -56,6 +59,8 @@
                 ])),
             ),
         ),
+*/
+/*
         (
             width: "1",
             alignment: Center,
@@ -77,6 +82,7 @@
                 ])),
             ),
         ),
+*/
         (
             width: "2",
             alignment: Center,
@@ -144,31 +150,6 @@
         rows: [
             (
                 left: [
-                    (kind: Text(" ")),
-                    (kind: Property(Status(StateV2(playing_label: "", paused_label: "", stopped_label: "")))),
-                    (kind: Text("  ")),
-                    (kind: Property(Song(FileExtension))),
-                    (kind: Text(" ")),
-                    (kind: Property(Widget(ScanStatus))),
-                    (kind: Text(" ")),
-                    (kind: Property(Status(InputBuffer()))),
-                ],
-                center: [
-                    (kind: Property(Song(Title)),
-                        default: (kind: Property(Song(Filename)))
-                    )
-                ],
-                right: [
-                    (kind: Text(" ")),
-                    (kind: Property(Song(Channels())), style: (fg: "#4c566a")),
-                    (kind: Text(" 󱡫 ")),
-                    (kind: Text(" 󱡬")),
-                    (kind: Property(Status(Volume))),
-                    (kind: Text("% ")),
-                ],
-            ),
-            (
-                left: [
                     (kind: Text("[ ")),
                     (kind: Property(Status(Elapsed))),
                     (kind: Text(" / ")),
@@ -177,13 +158,7 @@
                     (kind: Text(" ]")),
                 ],
                 center: [
-                    (kind: Property(Song(Artist)),
-                        default: (kind: Text("Unknown Artist"))
-                    ),
-                    (kind: Text(" - ")),
-                    (kind: Property(Song(Album)),
-                        default: (kind: Text("Unknown Album"))
-                    )
+                    (kind: Property(Song(Title)), default: (kind: Property(Song(Filename))),)
                 ],
                 right: [
                     (kind: Text("[ ")),
@@ -195,9 +170,59 @@
                     (kind: Text(" | ")),
                     (kind: Property(Status(SingleV2(on_label: "󰎤", off_label: "󰎦", oneshot_label: "󰇊", off_oneshot_label: "󱅊")))),
                     (kind: Text(" | ")),
-                    (kind: Property(Status(Crossfade)),
-                        default: (kind: Text("󰴽"))),
+                    (kind: Property(Status(Crossfade)), default: (kind: Text("󰴽"))),
                     (kind: Text(" ]")),
+                ],
+            ),
+            (
+                left: [
+                    (kind: Text("[ ")),
+                    (kind: Property(Song(Bits())),default: (kind: Text(" "))),
+                    (kind: Text(" bit")),
+                    (kind: Text(" | ")),
+                    (kind: Property(Status(Bitrate)),default: (kind: Text(" "))),
+                    (kind: Text(" kbps")),
+                    (kind: Text(" ]")),
+                ],
+                center: [
+                    (kind: Property(Song(Artist)), default: (kind: Text("Unknown Artist"))),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Album)), default: (kind: Text("Unknown Album"))),
+                ],
+                right: [
+                    (kind: Text("[ ")),
+                    (kind: Property(Status(QueueTimeRemaining(separator: " ")))),
+                    (kind: Text(" / ")),
+                    (kind: Property(Status(QueueTimeTotal(separator: " ")))),
+                    (kind: Text(" 󱎫")),
+                ],
+            ),
+            (
+                left: [
+                    (kind: Text("[ ")),
+                    (kind: Property(Song(SampleRate())),default: (kind: Text(" "))),
+                    (kind: Text(" Hz")),
+                    (kind: Text(" | ")),
+                    (kind: Property(Song(Position)), default: (kind: Text("0"))),
+                    (kind: Text(" / ")),
+                    (kind: Property(Status(QueueLength()))),
+                    (kind: Text(" 󰴍")),
+                    (kind: Text(" ]"))
+                ],
+                center: [
+                    (kind: Property(Song(Other("albumartist"))), default: (kind: Text("Unknown Albumartist"))),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Other("composer"))), default: (kind: Text("Unknown Composer"))),
+                ],
+                right: [
+                    (kind: Text("[ ")),
+                    (kind: Property(Song(Other("date"))), default: (kind: Text("Unknown Date"))),
+                    (kind: Text(" | ")),
+                    (kind: Property(Song(Track)), default: (kind: Text("0"))),
+                    (kind: Text(" / ")),
+                    (kind: Property(Song(Disc)), default: (kind: Text("0"))),
+                    (kind: Text(" 󰥠 | ")),
+                    (kind: Property(Song(Other("genre"))), default: (kind: Text("Unknown Genre"))),
                     
                 ]
             ),
