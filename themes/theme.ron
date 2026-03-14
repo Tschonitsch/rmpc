@@ -85,7 +85,7 @@
 */
         (
             width: "2",
-            alignment: Center,
+            alignment: Right,
             label: "󰆙",
             prop: (
                 kind: Sticker("playCount"),
